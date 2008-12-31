@@ -27,11 +27,17 @@ class GUI(object):
 		self.entry["textvariable"] = self.var
 
 		self.process = partial(self.encrypt, self.entry)
+		self.decrypts = partial(self.decrypt, self.entry)
 
 		self.button = Button(self.window, text="Encrypt", command=self.process)
-		self.button.grid(row=1,column=0,padx=5,pady=5,sticky="W")
+		self.button.grid(row=1,column=0,padx=5,pady=5, sticky="W")
+
+		self.button1 = Button(self.window, text="Decrypt", command=self.decrypts)
+		self.button1.grid(row=1, column=1, padx=5, pady=5, sticky="W")
+		
+
 		self.entry1 = Entry(self.window)
-		self.entry1.grid(row=2,column=0,padx=5,pady=5,sticky="WE")
+		self.entry1.grid(row=2,column=0,padx=6,pady=5, sticky="WE",columnspan=2)
 
 		self.window.mainloop()
 
@@ -62,6 +68,8 @@ class GUI(object):
 					res += self.plain[o]
 			if encrypted.get()[i] == " ":
 				res += " "
+		self.entry1.delete(0, 'end')
+		self.entry1.insert(0, res)
 		return res
 
 app = GUI()
