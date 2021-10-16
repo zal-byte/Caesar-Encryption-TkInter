@@ -72,4 +72,11 @@ class GUI(object):
 		self.entry1.insert(0, res)
 		return res
 
-app = GUI()
+def preload():
+	app = GUI()
+
+if __name__ == "__main__":
+	try:
+		preload()
+	except Exception as e:
+		print("[ ! ] An exception has occured : " + e)
